@@ -55,7 +55,7 @@
 		],
 		"ter-func-call-spacing": [
 			true, 
-			"always"
+			"never"
 		],
 		"array-bracket-spacing": [
 				true,
