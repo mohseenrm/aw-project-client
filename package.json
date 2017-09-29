@@ -1,0 +1,40 @@
+{
+  "name": "aw-project-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "build": "\"node_modules/.bin/webpack\"",
+    "compile": "sass --watch \"src/styles:build/styles\"",
+    "lint": "\"node_modules/.bin/tslint\" -c tslint.json 'src/**/*.{ts,tsx}' -e 'node_modules/**'",
+    "lint:fix": "\"node_modules/.bin/tslint\" -c tslint.json 'src/**/*.{ts,tsx}' -e 'node_modules/**' --fix",
+    "watch": "\"node_modules/.bin/webpack\" --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohseenrm/aw-project-client.git"
+  },
+  "author": "",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.28",
+    "@types/react": "^16.0.2",
+    "@types/react-dom": "^15.5.3",
+    "awesome-typescript-loader": "^3.2.3",
+    "source-map-loader": "^0.2.1",
+    "tslint": "^5.6.0",
+    "tslint-config-airbnb": "^5.2.1",
+    "tslint-eslint-rules": "^4.1.1",
+    "tslint-react": "^3.2.0",
+    "typescript": "^2.4.2",
+    "webpack": "^3.5.5"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mohseenrm/aw-project-client/issues"
+  },
+  "homepage": "https://github.com/mohseenrm/aw-project-client#readme"
+}
