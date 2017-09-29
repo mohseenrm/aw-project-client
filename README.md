@@ -1,5 +1,5 @@
-# api-playground-cyr3con
-
+# aw-project-client
+> Lint you're builds before commiting
 <table>
   <thead>
     <tr>
@@ -15,3 +15,36 @@
     </tr>
   </tbody>
 </table>
+
+# Node Installation
+Install [nvm](https://github.com/creationix/nvm) (Mac and Linux)
+
+[nvm-windows](https://github.com/coreybutler/nvm-windows)
+
+```
+nvm install 8
+nvm use 8
+```
+
+# Project Installation
+```
+npm i -g yarn
+// inside project root
+yarn
+```
+
+# Build
+```
+yarn build
+```
+
+# Watch
+```
+yarn watch
+```
+
+# Lint
+```
+yarn lint
+yarn lint:fix
+```

@@ -13,8 +13,8 @@ cache:
     - "node_modules"
 
 before_install:
-  - git clean -xdff
   - npm i -g yarn
+  - yarn clean
 
 install:
   - yarn
