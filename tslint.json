@@ -47,7 +47,7 @@
 		"object-literal-shorthand": true,
 		"space-in-parens": [
 			true,
-			"always"
+			"never"
 		],
 		"object-curly-spacing": [
 			true,
