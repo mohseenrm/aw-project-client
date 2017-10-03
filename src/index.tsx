@@ -9,6 +9,8 @@ import AppContainer from './containers/AppContainer';
 
 const store = createStore(reducers);
 
+console.log('Store: ', store.getState());
+
 ReactDOM.render(
 	<Provider store={store}>
 		<AppContainer />
