@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import Cards from './Cards';
+
 interface AppProps {
   message: string;
 }
@@ -13,7 +15,7 @@ export default class App extends React.Component < AppProps, any > {
   render () {
     return(
 			<div className="main-wrapper">
-				Hola {this.props.message}!
+				<Cards message="kavita" />
 			</div>
     );
   }

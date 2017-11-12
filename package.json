@@ -20,7 +20,8 @@
   "author": "",
   "dependencies": {
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "semantic-ui-react": "^0.76.0"
   },
   "devDependencies": {
     "@types/node": "^8.0.28",
