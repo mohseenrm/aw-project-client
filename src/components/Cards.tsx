@@ -2,6 +2,10 @@ import * as React from 'react';
 import {
   Button,
   Card,
+  Header,
+  Icon,
+   Image,
+   Modal,
 } from 'semantic-ui-react';
 
 interface CardProps {
@@ -11,7 +15,17 @@ interface CardProps {
 export default class Cards extends React.Component < CardProps, any > {
   constructor (props: any) {
     super(props);
-    this.state = {};
+    this.state = {clicked:false};
+    this.handleClick=this.handleClick.bind(this);
+  }
+
+  // onclick function of card
+ handleClick(){
+
+        this.setState({clicked: !this.state.clicked});
+        console.log(this.state);
+
+
   }
 
   render () {
@@ -21,6 +35,7 @@ export default class Cards extends React.Component < CardProps, any > {
           <Card
             fluid={true}
             href="#"
+            onClick={this.handleClick}
           >
             <Card.Content>
               <Card.Header>
@@ -57,6 +72,27 @@ export default class Cards extends React.Component < CardProps, any > {
             </Card.Content>
           </Card>
         </Card.Group>
+
+        <Modal open={this.state.clicked} >
+    <Modal.Header>Profile Picture</Modal.Header>
+    <Modal.Content image scrolling>
+      <Image
+        size='medium'
+        src='/assets/images/wireframe/image.png'
+        wrapped
+      />
+
+      <Modal.Description>
+        <Header>Modal Header</Header>
+        <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
+      </Modal.Description>
+    </Modal.Content>
+    <Modal.Actions>
+      <Button primary onClick={this.handleClick}>
+        Proceed <Icon name="chevron right" />
+      </Button>
+    </Modal.Actions>
+  </Modal>
 			</div>
     );
   }
