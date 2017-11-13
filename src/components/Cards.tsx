@@ -18,7 +18,10 @@ export default class Cards extends React.Component < CardProps, any > {
     return(
 			<div className="main-wrapper--cards">
 				<Card.Group basic={true} size="small" itemsPerRow="three">
-          <Card fluid={true}>
+          <Card
+            fluid={true}
+            href="#"
+          >
             <Card.Content>
               <Card.Header>
                 Steve Sanders
