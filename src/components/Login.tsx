@@ -6,6 +6,7 @@ import {
 } from 'semantic-ui-react';
 
 interface LoginProps {
+  callbackParent: Function;
 }
 
 interface LoginState {
@@ -14,7 +15,13 @@ interface LoginState {
 export default class Login extends React.Component < LoginProps, LoginState > {
   constructor (props: any) {
     super(props);
-    this.state = {};
+		  this.state = {};
+
+		  this.createUser = this.createUser.bind(this);
+  }
+
+  createUser (event: any) {
+    this.props.callbackParent(true);
   }
 
   render () {
@@ -38,6 +45,13 @@ export default class Login extends React.Component < LoginProps, LoginState > {
 					size="huge"
 				>
 					Login
+				</Button>
+				<Button
+					primary={true}
+					size="huge"
+					onClick={this.createUser}
+				>
+					Create User
 				</Button>
 			</div>
     );

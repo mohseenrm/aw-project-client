@@ -4,4 +4,12 @@
 	display: flex;
 	background: $off-white;
 	font-family: $content-font;
+
+	&--create-user{
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		width: 100%;
+		padding: 3vw;
+	}
 }
