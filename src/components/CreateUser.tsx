@@ -12,42 +12,42 @@ interface CreateUserProps {
 }
 
 interface CreateUserState {
-	first_name: string;
-	last_name: string;
-	user_name: string;
-	password: string;
+  first_name: string;
+  last_name: string;
+  user_name: string;
+  password: string;
 }
 
 export default class CreateUser extends React.Component < CreateUserProps, CreateUserState > {
   constructor (props: any) {
     super(props);
-		this.state = {
-			first_name: '',
-			last_name: '',
-			user_name: '',
-			password: '',
-		};
+		  this.state = {
+    first_name: '',
+    last_name: '',
+    user_name: '',
+    password: '',
+  };
 
-		this.backToLogin = this.backToLogin.bind(this);
-		this.handleChange = this.handleChange.bind(this);
-	}
+		  this.backToLogin = this.backToLogin.bind(this);
+		  this.handleChange = this.handleChange.bind(this);
+  }
 
-	handleChange (e: any, state: any) {
-		console.log(e.target);
-		const { name, value } = e.target;
+  handleChange (e: any, state: any) {
+    console.log(e.target);
+    const { name, value } = e.target;
 
-		this.setState(
+    this.setState(
 			Object.assign(
 				{},
 				this.state,
 				{ [name]: value },
 			),
 		);
-	}
-	
-	sendRequest (event: any) {
-		console.log(this.state);
-	}
+  }
+
+  sendRequest (event: any) {
+    console.log(this.state);
+  }
 
   backToLogin (event: any) {
     this.props.callbackParent(false);
