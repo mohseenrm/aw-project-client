@@ -18,7 +18,6 @@ export default class CreateUser extends React.Component < CreateUserProps, Creat
   constructor (props: any) {
     super(props);
 		  this.state = {};
-
 		  this.backToLogin = this.backToLogin.bind(this);
   }
 
@@ -58,19 +57,21 @@ export default class CreateUser extends React.Component < CreateUserProps, Creat
 							width={4}
 						/>
 					</Form.Group>
-					<Button
-						primary={true}
-						size="huge"
-					>
-						Submit
-					</Button>
-					<Button
-						primary={false}
-						size="huge"
-						onClick={this.backToLogin}
-					>
-						Close
-					</Button>
+					<div className="main-wrapper--create-user--buttons">
+						<Button
+							primary={true}
+							size="huge"
+						>
+							Submit
+						</Button>
+						<Button
+							primary={false}
+							size="huge"
+							onClick={this.backToLogin}
+						>
+							Close
+						</Button>
+					</div>
 				</Form>
 			</div>
     );

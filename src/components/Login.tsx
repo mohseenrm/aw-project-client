@@ -28,31 +28,35 @@ export default class Login extends React.Component < LoginProps, LoginState > {
     return(
 			<div className="main-wrapper--login">
 				<Input
-					icon={<Icon name="user" inverted={true} circular={true} link={true} color="blue" />}
-					iconPosition="left"
-					placeholder="John Bohnam"
-					size="large"
+          className="m-1"
+          icon={<Icon name="user" inverted={true} circular={true} link={true} color="blue" />}
+          iconPosition="left"
+          placeholder="John Bohnam"
+          size="huge"
 				/>
 				<Input
-					icon={<Icon name="lock" inverted={true} circular={true} link={true} color="blue" />}
-					iconPosition="left"
-					placeholder="Password"
-					size="large"
-					type="password"
+          className="m-1"
+          icon={<Icon name="lock" inverted={true} circular={true} link={true} color="blue" />}
+          iconPosition="left"
+          placeholder="Password"
+          size="huge"
+          type="password"
 				/>
-				<Button
-					primary={true}
-					size="huge"
-				>
-					Login
-				</Button>
-				<Button
-					primary={true}
-					size="huge"
-					onClick={this.createUser}
-				>
-					Create User
-				</Button>
+				<div className="main-wrapper--login--buttons">
+          <Button
+            primary={true}
+            size="huge"
+          >
+            Login
+          </Button>
+          <Button
+            primary={false}
+            size="huge"
+            onClick={this.createUser}
+          >
+            Create User
+          </Button>
+        </div>
 			</div>
     );
   }
