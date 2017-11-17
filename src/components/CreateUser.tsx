@@ -14,26 +14,28 @@ interface CreateUserProps {
 interface CreateUserState {
   first_name: string;
   last_name: string;
-  user_name: string;
+  email: string;
   password: string;
 }
 
 export default class CreateUser extends React.Component < CreateUserProps, CreateUserState > {
   constructor (props: any) {
-    super(props);
-		  this.state = {
-    first_name: '',
-    last_name: '',
-    user_name: '',
-    password: '',
-  };
+	/* tslint:disable */
+		super(props);
+		this.state = {
+			first_name: '',
+			last_name: '',
+			email: '',
+			password: '',
+		};
 
-		  this.backToLogin = this.backToLogin.bind(this);
-		  this.handleChange = this.handleChange.bind(this);
+		this.backToLogin = this.backToLogin.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.sendRequest = this.sendRequest.bind(this);
+		/* tslint:enable */
   }
 
   handleChange (e: any, state: any) {
-    console.log(e.target);
     const { name, value } = e.target;
 
     this.setState(
@@ -46,7 +48,22 @@ export default class CreateUser extends React.Component < CreateUserProps, Creat
   }
 
   sendRequest (event: any) {
-    console.log(this.state);
+		/* tslint:disable */
+		const { first_name, last_name, email, password } = this.state;
+		return axios({
+			method: 'post',
+			url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/userservice/createuser/',
+			data: {
+				email,
+				pswd: password,
+				details: {
+					first_name,
+					last_name,
+				},
+			}
+		}).then(response => console.log(response))
+		.catch(error => console.log(error));
+		/* tslint:enable */
   }
 
   backToLogin (event: any) {
@@ -77,11 +94,11 @@ export default class CreateUser extends React.Component < CreateUserProps, Creat
 					</Form.Group>
 					<Form.Group unstackable={true} widths="equal">
 						<Form.Field
-							label="Username"
-							name="user_name"
+							label="Email"
+							name="email"
 							onChange={this.handleChange}
 							control="input"
-							placeholder="john_bohnam"
+							placeholder="john_bohnam@asu.edu"
 							width={4}
 						/>
 						<Form.Field

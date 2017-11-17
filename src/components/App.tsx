@@ -37,7 +37,6 @@ export default class App extends React.Component < AppProps, AppState > {
 
   render () {
     if (this.state.create) {
-      console.log('here');
       return <CreateUser callbackParent={this.shouldCreateUser} />;
     } else if (this.state.auth) {
       return(
