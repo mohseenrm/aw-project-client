@@ -1,4 +1,6 @@
+import axios from 'axios';
 import * as React from 'react';
+
 import {
 	Button,
 	Icon,
@@ -10,18 +12,52 @@ interface LoginProps {
 }
 
 interface LoginState {
+  email: string;
+  password: string;
 }
 
 export default class Login extends React.Component < LoginProps, LoginState > {
   constructor (props: any) {
     super(props);
-		  this.state = {};
 
-		  this.createUser = this.createUser.bind(this);
+    this.state = {
+      email: '',
+      password: '',
+    };
+
+    this.createUser = this.createUser.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.sendAuthRequest = this.sendAuthRequest.bind(this);
   }
 
   createUser (event: any) {
     this.props.callbackParent(true);
+  }
+
+  sendAuthRequest () {
+    const { email, password } = this.state;
+
+    return axios({
+      method: 'post',
+      url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/userservice/createuser/',
+      data: {
+        email,
+        password,
+      },
+    }).then((response: any) => console.log(response))
+    .catch((error: any) => console.log(error));
+  }
+
+  handleChange (e: any, state: any) {
+    const { name, value } = e.target;
+
+    this.setState(
+			Object.assign(
+				{},
+				this.state,
+				{ [name]: value },
+			),
+		);
   }
 
   render () {
@@ -31,6 +67,8 @@ export default class Login extends React.Component < LoginProps, LoginState > {
           className="m-1"
           icon={<Icon name="user" inverted={true} circular={true} link={true} color="blue" />}
           iconPosition="left"
+          name="email"
+          onChange={this.handleChange}
           placeholder="John Bohnam"
           size="huge"
 				/>
@@ -38,6 +76,8 @@ export default class Login extends React.Component < LoginProps, LoginState > {
           className="m-1"
           icon={<Icon name="lock" inverted={true} circular={true} link={true} color="blue" />}
           iconPosition="left"
+          name="password"
+          onChange={this.handleChange}
           placeholder="Password"
           size="huge"
           type="password"
@@ -46,6 +86,7 @@ export default class Login extends React.Component < LoginProps, LoginState > {
           <Button
             primary={true}
             size="huge"
+            onClick={this.sendAuthRequest}
           >
             Login
           </Button>
