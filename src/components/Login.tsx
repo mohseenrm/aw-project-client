@@ -42,12 +42,15 @@ export default class Login extends React.Component < LoginProps, LoginState > {
 
     return axios({
       method: 'post',
-      url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/userservice/createuser/',
+      url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/userservice/uservalidation/',
+      responseType: 'json',
       data: {
         email,
         password,
       },
-    }).then((response: any) => console.log(response))
+    }).then((response: any) => {
+      console.log(response);
+    })
     .catch((error: any) => console.log(error));
   }
 
@@ -95,7 +98,7 @@ export default class Login extends React.Component < LoginProps, LoginState > {
               Login
             </Button>
             <Button
-              primary={false}
+              secondary={true}
               size="huge"
               onClick={this.createUser}
             >
@@ -141,7 +144,6 @@ export default class Login extends React.Component < LoginProps, LoginState > {
               Login
             </Button>
             <Button
-              primary={false}
               size="huge"
               onClick={this.createUser}
             >

@@ -2,14 +2,13 @@ import axios from 'axios';
 import * as React from 'react';
 
 import {
-	Button,
 	Form,
 	Input,
  } from 'semantic-ui-react';
 
 interface CreateUserProps {
-	callbackParent: Function;
-	getCreateUserData: Function;
+  callbackParent: Function;
+  getCreateUserData: Function;
 }
 
 interface CreateUserState {
@@ -134,13 +133,13 @@ export default class CreateUser extends React.Component < CreateUserProps, Creat
 						>
 							Submit
 						</Form.Button>
-						<Button
-							primary={false}
+						<Form.Button
+							secondary={true}
 							size="huge"
 							onClick={this.backToLogin}
 						>
 							Close
-						</Button>
+						</Form.Button>
 					</div>
 				</Form>
 			</div>
