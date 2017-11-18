@@ -8,7 +8,8 @@ import {
  } from 'semantic-ui-react';
 
 interface CreateUserProps {
-  callbackParent: Function;
+	callbackParent: Function;
+	getCreateUserData: Function;
 }
 
 interface CreateUserState {
@@ -51,25 +52,33 @@ export default class CreateUser extends React.Component < CreateUserProps, Creat
 		/* tslint:disable */
 		const { first_name, last_name, email, password } = this.state;
 
-		const payload = {
-			email,
-			pswd: password,
-			details: {
-				first_name,
-				last_name,
-			}
-		};
 		return axios({
 			method: 'post',
 			url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/userservice/createuser/',
 			responseType: 'json',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type':'application/json',
-				// 'Origin': ['POST','PUT','DELETE', 'GET', 'HEAD', 'OPTIONS', 'PATCH'],
+			data: {
+				email,
+				pswd: password,
+				details: {
+					first_name,
+					last_name,
+				}
 			},
-			data: JSON.stringify(payload),
-		}).then(response => console.log(response))
+		}).then(response => {
+			console.log(response);
+			const responseData = response.data.responseData || null;
+			const userData = responseData.content || null;
+
+			const { success } = responseData;
+			const { username } = userData;
+			const token = userData['X-Authorization-Token'] || null;
+
+			this.props.getCreateUserData(
+				!success,
+				token,
+				username
+			);
+		})
 		.catch(error => console.log(error));
 		/* tslint:enable */
   }

@@ -4,11 +4,14 @@ import * as React from 'react';
 import {
 	Button,
 	Icon,
-	Input,
+  Input,
+  Message,
 } from 'semantic-ui-react';
 
 interface LoginProps {
   callbackParent: Function;
+  token: string;
+  username: string;
 }
 
 interface LoginState {
@@ -61,44 +64,92 @@ export default class Login extends React.Component < LoginProps, LoginState > {
   }
 
   render () {
-    return(
-			<div className="main-wrapper--login">
-				<Input
-          className="m-1"
-          icon={<Icon name="user" inverted={true} circular={true} link={true} color="blue" />}
-          iconPosition="left"
-          name="email"
-          onChange={this.handleChange}
-          placeholder="John Bohnam"
-          size="huge"
-				/>
-				<Input
-          className="m-1"
-          icon={<Icon name="lock" inverted={true} circular={true} link={true} color="blue" />}
-          iconPosition="left"
-          name="password"
-          onChange={this.handleChange}
-          placeholder="Password"
-          size="huge"
-          type="password"
-				/>
-				<div className="main-wrapper--login--buttons">
-          <Button
-            primary={true}
+    if (this.props.username !== '') {
+      return(
+        <div className="main-wrapper--login">
+          <Input
+            className="m-1"
+            icon={<Icon name="user" inverted={true} circular={true} link={true} color="blue" />}
+            iconPosition="left"
+            name="email"
+            onChange={this.handleChange}
+            placeholder="John Bohnam"
             size="huge"
-            onClick={this.sendAuthRequest}
-          >
-            Login
-          </Button>
-          <Button
-            primary={false}
+          />
+          <Input
+            className="m-1"
+            icon={<Icon name="lock" inverted={true} circular={true} link={true} color="blue" />}
+            iconPosition="left"
+            name="password"
+            onChange={this.handleChange}
+            placeholder="Password"
             size="huge"
-            onClick={this.createUser}
-          >
-            Create User
-          </Button>
+            type="password"
+          />
+          <div className="main-wrapper--login--buttons">
+            <Button
+              primary={true}
+              size="huge"
+              onClick={this.sendAuthRequest}
+            >
+              Login
+            </Button>
+            <Button
+              primary={false}
+              size="huge"
+              onClick={this.createUser}
+            >
+              Create User
+            </Button>
+          </div>
+          <Message success={true}>
+            <Message.Header>
+              User: {this.props.username} was created successfully!
+            </Message.Header>
+            Token: {this.props.token}
+          </Message>
         </div>
-			</div>
-    );
+      );
+    } else {
+      return(
+        <div className="main-wrapper--login">
+          <Input
+            className="m-1"
+            icon={<Icon name="user" inverted={true} circular={true} link={true} color="blue" />}
+            iconPosition="left"
+            name="email"
+            onChange={this.handleChange}
+            placeholder="John Bohnam"
+            size="huge"
+          />
+          <Input
+            className="m-1"
+            icon={<Icon name="lock" inverted={true} circular={true} link={true} color="blue" />}
+            iconPosition="left"
+            name="password"
+            onChange={this.handleChange}
+            placeholder="Password"
+            size="huge"
+            type="password"
+          />
+          <div className="main-wrapper--login--buttons">
+            <Button
+              primary={true}
+              size="huge"
+              onClick={this.sendAuthRequest}
+            >
+              Login
+            </Button>
+            <Button
+              primary={false}
+              size="huge"
+              onClick={this.createUser}
+            >
+              Create User
+            </Button>
+          </div>
+        </div>
+      );
+    }
   }
 }

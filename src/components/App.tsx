@@ -11,18 +11,23 @@ interface AppProps {
 interface AppState {
   auth: boolean;
   create: boolean;
+  token: string;
+  username: string;
 }
 
 export default class App extends React.Component < AppProps, AppState > {
   constructor (props: any) {
     super(props);
     this.state = {
-      create: false,
       auth: false,
+      create: false,
+      token: '',
+      username: '',
     };
 
     /* This pattern is used to bind context of the current component */
     this.shouldCreateUser = this.shouldCreateUser.bind(this);
+    this.getCreateUserData = this.getCreateUserData.bind(this);
   }
 
   shouldCreateUser (create: boolean) {
@@ -35,9 +40,28 @@ export default class App extends React.Component < AppProps, AppState > {
     );
   }
 
+  getCreateUserData (create: boolean, token: string = '', username: string = '') {
+    this.setState(
+      Object.assign(
+        {},
+        this.state,
+        {
+          create,
+          token,
+          username,
+        },
+      ),
+    );
+  }
+
   render () {
     if (this.state.create) {
-      return <CreateUser callbackParent={this.shouldCreateUser} />;
+      return(
+        <CreateUser
+          callbackParent={this.shouldCreateUser}
+          getCreateUserData={this.getCreateUserData}
+        />
+      );
     } else if (this.state.auth) {
       return(
         <div className="main-wrapper">
@@ -47,7 +71,11 @@ export default class App extends React.Component < AppProps, AppState > {
     } else {
       return(
         <div className="main-wrapper">
-          <Login callbackParent={this.shouldCreateUser} />
+          <Login
+            callbackParent={this.shouldCreateUser}
+            token={this.state.token}
+            username={this.state.username}
+          />
         </div>
       );
     }
