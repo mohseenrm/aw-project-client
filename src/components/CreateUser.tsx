@@ -50,17 +50,25 @@ export default class CreateUser extends React.Component < CreateUserProps, Creat
   sendRequest (event: any) {
 		/* tslint:disable */
 		const { first_name, last_name, email, password } = this.state;
+
+		const payload = {
+			email,
+			pswd: password,
+			details: {
+				first_name,
+				last_name,
+			}
+		};
 		return axios({
 			method: 'post',
 			url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/userservice/createuser/',
-			data: {
-				email,
-				pswd: password,
-				details: {
-					first_name,
-					last_name,
-				},
-			}
+			responseType: 'json',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type':'application/json',
+				// 'Origin': ['POST','PUT','DELETE', 'GET', 'HEAD', 'OPTIONS', 'PATCH'],
+			},
+			data: JSON.stringify(payload),
 		}).then(response => console.log(response))
 		.catch(error => console.log(error));
 		/* tslint:enable */
