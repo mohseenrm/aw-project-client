@@ -16,35 +16,36 @@
   </tbody>
 </table>
 
-# Node Installation
+## Node Installation
 Install [nvm](https://github.com/creationix/nvm) (Mac and Linux)
 
 [nvm-windows](https://github.com/coreybutler/nvm-windows)
 
 ```
-nvm install 8
-nvm use 8
+$ nvm install 8
+$ nvm use 8
 ```
 
-# Project Installation
+## Project Installation
 ```
-npm i -g yarn
-// inside project root
-yarn
+$ npm i -g yarn
+$ yarn
 ```
-
-# Build
+## Commands
+### Build
 ```
-yarn build
+$ yarn build
 ```
-
-# Watch
+### Watch
 ```
-yarn watch
+$ yarn watch
 ```
-
-# Lint
+### Lint
 ```
-yarn lint
-yarn lint:fix
+$ yarn lint
+$ yarn lint:fix
+```
+### Dev Server
+```
+$ yarn dev:server
 ```
