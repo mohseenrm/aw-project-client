@@ -46,7 +46,8 @@ export default class Login extends React.Component < LoginProps, LoginState > {
       responseType: 'json',
       data: {
         email,
-        password,
+        pswd: password,
+        remember_me: '1',
       },
     }).then((response: any) => {
       console.log(response);
