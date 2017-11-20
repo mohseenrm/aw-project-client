@@ -10,6 +10,7 @@ import {
 
 interface LoginProps {
   callbackParent: Function;
+  getLoginUserData: Function;
   token: string;
   username: string;
 }
@@ -50,7 +51,8 @@ export default class Login extends React.Component < LoginProps, LoginState > {
         remember_me: '1',
       },
     }).then((response: any) => {
-      console.log(response);
+      const auth = response.data.responseData.content.is_authorized || false;
+      this.props.getLoginUserData(auth);
     })
     .catch((error: any) => console.log(error));
   }

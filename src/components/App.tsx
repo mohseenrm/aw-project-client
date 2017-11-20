@@ -28,6 +28,7 @@ export default class App extends React.Component < AppProps, AppState > {
     /* This pattern is used to bind context of the current component */
     this.shouldCreateUser = this.shouldCreateUser.bind(this);
     this.getCreateUserData = this.getCreateUserData.bind(this);
+    this.getLoginUserData = this.getLoginUserData.bind(this);
   }
 
   shouldCreateUser (create: boolean) {
@@ -54,6 +55,16 @@ export default class App extends React.Component < AppProps, AppState > {
     );
   }
 
+  getLoginUserData (auth: boolean) {
+    this.setState(
+      Object.assign(
+        {},
+        this.state,
+        { auth },
+      ),
+    );
+  }
+
   render () {
     if (this.state.create) {
       return(
@@ -75,6 +86,7 @@ export default class App extends React.Component < AppProps, AppState > {
             callbackParent={this.shouldCreateUser}
             token={this.state.token}
             username={this.state.username}
+            getLoginUserData={this.getLoginUserData}
           />
         </div>
       );
