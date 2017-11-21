@@ -11,6 +11,8 @@ import {
   Modal,
 } from 'semantic-ui-react';
 
+import Cards from './Cards';
+
 interface ProfileProps {
   username: string;
   token: string;
@@ -80,7 +82,7 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
           <Loader size="big">Hold tight! Fetching your cards...</Loader>
         </Dimmer>
         {/* Card */}
-				<Card.Group basic={true} size="small" itemsPerRow="three">
+				{/* <Card.Group basic={true} size="small" itemsPerRow="three">
           <Card
             fluid={true}
             href="#"
@@ -120,7 +122,8 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
               </div>
             </Card.Content>
           </Card>
-        </Card.Group>
+        </Card.Group> */}
+        <Cards data={this.state.cardData} />
         {/* Modal */}
         <Modal open={this.state.clicked} >
           <Modal.Header>Profile Picture</Modal.Header>
