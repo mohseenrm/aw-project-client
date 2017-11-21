@@ -20,7 +20,7 @@ interface CreateUserState {
 
 export default class CreateUser extends React.Component < CreateUserProps, CreateUserState > {
   constructor (props: any) {
-	/* tslint:disable */
+		/* tslint:disable */
 		super(props);
 		this.state = {
 			first_name: '',

@@ -51,8 +51,11 @@ export default class Login extends React.Component < LoginProps, LoginState > {
         remember_me: '1',
       },
     }).then((response: any) => {
+      console.log(response);
       const auth = response.data.responseData.content.is_authorized || false;
-      this.props.getLoginUserData(auth);
+      const token = response.data.responseData.content['X-Authorization-Token'] || '';
+      const username = response.data.responseData.content.username || '';
+      this.props.getLoginUserData(auth, token, username);
     })
     .catch((error: any) => console.log(error));
   }

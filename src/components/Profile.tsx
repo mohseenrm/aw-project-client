@@ -8,11 +8,12 @@ import {
   Modal,
 } from 'semantic-ui-react';
 
-interface CardProps {
-  message: string;
+interface ProfileProps {
+  username: string;
+  token: string;
 }
 
-export default class Cards extends React.Component < CardProps, any > {
+export default class Profile extends React.Component < ProfileProps, any > {
   constructor (props: any) {
     super(props);
     this.state = { clicked:false };

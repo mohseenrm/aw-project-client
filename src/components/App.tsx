@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Cards from './Cards';
+import Profile from './Profile';
 import Login from './Login';
 import CreateUser from './CreateUser';
 
@@ -55,12 +55,16 @@ export default class App extends React.Component < AppProps, AppState > {
     );
   }
 
-  getLoginUserData (auth: boolean) {
+  getLoginUserData (auth: boolean, token: string, username: string) {
     this.setState(
       Object.assign(
         {},
         this.state,
-        { auth },
+        {
+          auth,
+          token,
+          username,
+        },
       ),
     );
   }
@@ -76,7 +80,10 @@ export default class App extends React.Component < AppProps, AppState > {
     } else if (this.state.auth) {
       return(
         <div className="main-wrapper">
-          <Cards message="kavita" />
+          <Profile
+            token={this.state.token}
+            username={this.state.username}
+          />
         </div>
       );
     } else {
