@@ -26,9 +26,9 @@ export default class App extends React.Component < AppProps, AppState > {
     };
 
     /* This pattern is used to bind context of the current component */
-    this.shouldCreateUser = this.shouldCreateUser.bind(this);
     this.getCreateUserData = this.getCreateUserData.bind(this);
     this.getLoginUserData = this.getLoginUserData.bind(this);
+    this.shouldCreateUser = this.shouldCreateUser.bind(this);
   }
 
   shouldCreateUser (create: boolean) {
