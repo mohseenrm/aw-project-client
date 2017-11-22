@@ -16,9 +16,11 @@ interface CardsState {
 export default class Cards extends React.Component < CardsProps, CardsState > {
   constructor (props: any) {
     super(props);
+    this.state = {};
+  }
 
-    this.state = {
-    };
+  handleClick (index: number, e: any) {
+    console.log(index);
   }
 
   render () {
@@ -31,12 +33,13 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 					stackable={true}
 				>
 					{
-						this.props.data.map(cardData =>
+						this.props.data.map((cardData, index) =>
 							<Card
 								fluid={true}
 								href="#"
+								key={index}
 								raised={true}
-								// onClick={this.handleClick}
+								onClick={this.handleClick.bind(this, index)}
 							>
 								<Card.Content>
 									<Card.Header>
