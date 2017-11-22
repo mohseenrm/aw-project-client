@@ -9,7 +9,8 @@ import {
 import { CardProps } from 'semantic-ui-react/dist/commonjs/views/Card/Card';
 
 interface CardsProps {
-  data: [any];
+	data: [any];
+	token: string;
 }
 
 interface CardsState {
@@ -46,12 +47,10 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
     const className = e.target.className || '';
     if (className.includes('up icon') || className.includes('icon button')) {
 			/* tslint:disable */
-      console.log('INDEX', index);
-      console.log('self: ', self);
-			console.log('e: ', e);
-			const newState = self.state;
+			let newState = self.state;
 			newState.data[index].upvotes = '' + (parseInt(newState.data[index].upvotes) + 1);
-			console.log(newState);
+			newState.data[index].last_modified = '' + new Date();
+
 			self.setState(
 				Object.assign(
 					{},
@@ -59,6 +58,15 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 					newState,
 				),
 			);
+
+			return axios({
+				method: 'post',
+				url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/updatecard/',
+				responseType: 'json',
+				data: newState.data[index],
+				headers: { 'X-Authorization-Token': this.props.token },
+			}).then(response => console.log(response))
+			.catch(error => console.warn(error));
 		}
 		/* tslint:enable */
   }
@@ -67,9 +75,6 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
     const className = e.target.className || '';
     if (className.includes('down icon') || className.includes('icon button')) {
 			/* tslint:disable */
-      console.log('INDEX', index);
-      console.log('self: ', self);
-			console.log('e: ', e);
 			const newState = self.state;
 			newState.data[index].downvotes = '' + (parseInt(newState.data[index].downvotes) + 1);
 			console.log(newState);

@@ -82,7 +82,10 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
           <Loader size="big">Hold tight! Fetching your cards...</Loader>
         </Dimmer>
         {/* Cards */}
-        <Cards data={this.state.cardData} />
+        <Cards
+          data={this.state.cardData}
+          token={this.props.token}
+        />
         {/* Modal */}
         <Modal open={this.state.clicked} >
           <Modal.Header>Profile Picture</Modal.Header>
