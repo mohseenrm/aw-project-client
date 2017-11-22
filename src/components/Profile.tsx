@@ -76,7 +76,7 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
 
   render () {
     return(
-			<div className="main-wrapper--cards">
+			<div className="profile-wrapper--cards">
         {/* Loader */}
         <Dimmer active={this.state.loading}>
           <Loader size="big">Hold tight! Fetching your cards...</Loader>
