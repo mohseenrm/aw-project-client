@@ -45,10 +45,43 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
   upVoteHandler (index: number, self: any, e: any) {
     const className = e.target.className || '';
     if (className.includes('up icon') || className.includes('icon button')) {
+			/* tslint:disable */
       console.log('INDEX', index);
       console.log('self: ', self);
-      console.log('e: ', e);
-    }
+			console.log('e: ', e);
+			const newState = self.state;
+			newState.data[index].upvotes = '' + (parseInt(newState.data[index].upvotes) + 1);
+			console.log(newState);
+			self.setState(
+				Object.assign(
+					{},
+					self.state,
+					newState,
+				),
+			);
+		}
+		/* tslint:enable */
+  }
+
+  downVoteHandler (index: number, self: any, e: any) {
+    const className = e.target.className || '';
+    if (className.includes('down icon') || className.includes('icon button')) {
+			/* tslint:disable */
+      console.log('INDEX', index);
+      console.log('self: ', self);
+			console.log('e: ', e);
+			const newState = self.state;
+			newState.data[index].downvotes = '' + (parseInt(newState.data[index].downvotes) + 1);
+			console.log(newState);
+			self.setState(
+				Object.assign(
+					{},
+					self.state,
+					newState,
+				),
+			);
+		}
+		/* tslint:enable */
   }
 
   render () {
@@ -97,6 +130,7 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 											color="orange"
 											icon="thumbs down"
 											label={{ basic: true, color: 'orange', pointing: 'left', content: cardData.downvotes }}
+											onClick={this.downVoteHandler.bind(this, index, self)}
 										/>
 									</div>
 								</Card.Content>
