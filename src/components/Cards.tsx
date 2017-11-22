@@ -9,8 +9,8 @@ import {
 import { CardProps } from 'semantic-ui-react/dist/commonjs/views/Card/Card';
 
 interface CardsProps {
-	data: [any];
-	token: string;
+  data: [any];
+  token: string;
 }
 
 interface CardsState {
