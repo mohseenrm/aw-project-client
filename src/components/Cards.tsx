@@ -6,12 +6,14 @@ import {
 	Card,
 	Rating,
 } from 'semantic-ui-react';
+import { CardProps } from 'semantic-ui-react/dist/commonjs/views/Card/Card';
 
 interface CardsProps {
   data: [any];
 }
 
 interface CardsState {
+  data?: [any];
 }
 
 export default class Cards extends React.Component < CardsProps, CardsState > {
@@ -20,13 +22,40 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
     this.state = {};
   }
 
-  handleClick (index: number, e: any) {
-    console.log(index);
+  componentWillReceiveProps (props: CardProps) {
+    this.setState(
+			Object.assign(
+				{},
+				this.state,
+				{ data: props.data },
+			),
+		);
+  }
+
+  handleClick (index: number, self: any, e: any) {
+    const className = e.target.className || '';
+		// relevant to card clicks
+    if (className.includes('content')) {
+      console.log('INDEX', index);
+      console.log('self: ', self);
+      console.log('e: ', e);
+    }
+  }
+
+  upVoteHandler (index: number, self: any, e: any) {
+    const className = e.target.className || '';
+    if (className.includes('up icon') || className.includes('icon button')) {
+      console.log('INDEX', index);
+      console.log('self: ', self);
+      console.log('e: ', e);
+    }
   }
 
   render () {
-    if (this.props.data) {
-      return(
+		/* tslint:disable */
+		const self = this;
+    if (this.state.data) {
+			return(
 				<Card.Group
 					basic={true}
 					size="small"
@@ -34,13 +63,13 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 					stackable={true}
 				>
 					{
-						this.props.data.map((cardData, index) =>
+						this.state.data.map((cardData, index) =>
 							<Card
 								fluid={true}
 								href="#"
 								key={index}
 								raised={true}
-								onClick={this.handleClick.bind(this, index)}
+								onClick={this.handleClick.bind(this, index, self)}
 							>
 								<Card.Content>
 									<Card.Header>
@@ -61,6 +90,7 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 											color="blue"
 											icon="thumbs up"
 											label={{ basic: true, color: 'blue', pointing: 'left', content: cardData.upvotes }}
+											onClick={this.upVoteHandler.bind(this, index, self)}
 										/>
 										<Button
 											size="tiny"
@@ -74,9 +104,9 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 						)
 					}
 				</Card.Group>
-      );
-    } else {
-      return(
+			);
+		} else {
+			return(
 				<Card
 					fluid={true}
 					href="#"
@@ -116,7 +146,8 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 						</div>
 					</Card.Content>
 				</Card>
-      );
-    }
-  }
+			);
+		}
+	}
+	/* tslint:enable */
 }
