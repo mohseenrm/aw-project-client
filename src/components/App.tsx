@@ -79,7 +79,7 @@ export default class App extends React.Component < AppProps, AppState > {
       );
     } else if (this.state.auth) {
       return(
-        <div className="main-wrapper">
+        <div className="profile-wrapper">
           <Profile
             token={this.state.token}
             username={this.state.username}

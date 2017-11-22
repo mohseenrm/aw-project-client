@@ -4,6 +4,7 @@ import * as React from 'react';
 import {
 	Button,
 	Card,
+	Rating,
 } from 'semantic-ui-react';
 
 interface CardsProps {
@@ -44,6 +45,7 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 								<Card.Content>
 									<Card.Header>
 										{cardData.title}
+										<Rating icon="heart" defaultRating={0} maxRating={1} />
 									</Card.Header>
 									<Card.Meta>
 										{cardData.last_modified}
@@ -65,12 +67,6 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 											color="orange"
 											icon="thumbs down"
 											label={{ basic: true, color: 'orange', pointing: 'left', content: cardData.downvotes }}
-										/>
-										<Button
-											size="tiny"
-											color="red"
-											icon="heart"
-											label={{ basic: true, color: 'red', pointing: 'left', content: cardData.upvotes }}
 										/>
 									</div>
 								</Card.Content>
