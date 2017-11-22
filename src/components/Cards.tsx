@@ -77,7 +77,6 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 			/* tslint:disable */
 			const newState = self.state;
 			newState.data[index].downvotes = '' + (parseInt(newState.data[index].downvotes) + 1);
-			console.log(newState);
 			self.setState(
 				Object.assign(
 					{},
