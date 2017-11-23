@@ -61,12 +61,11 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 
 			return axios({
 				method: 'post',
-				url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/updatecard/',
+				url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/upvote/',
 				responseType: 'json',
-				data: newState.data[index],
+				data: { id: newState.data[index].id },
 				headers: { 'X-Authorization-Token': this.props.token },
-			}).then(response => console.log(response))
-			.catch(error => console.warn(error));
+			}).catch(error => console.warn(error));
 		}
 		/* tslint:enable */
   }
@@ -84,6 +83,14 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 					newState,
 				),
 			);
+
+			return axios({
+				method: 'post',
+				url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/downvote/',
+				responseType: 'json',
+				data: { id: newState.data[index].id },
+				headers: { 'X-Authorization-Token': this.props.token },
+			}).catch(error => console.warn(error));
 		}
 		/* tslint:enable */
   }
