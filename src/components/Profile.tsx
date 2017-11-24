@@ -23,6 +23,7 @@ interface ProfileState {
   cardData?: [any];
   clicked: boolean;
   loading: boolean;
+  selectedIndex: number;
 }
 
 export default class Profile extends React.Component < ProfileProps, ProfileState > {
@@ -32,6 +33,7 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
     this.state = {
       clicked: false,
       loading: true,
+      selectedIndex: 0,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -84,7 +86,10 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
       Object.assign(
         {},
         this.state,
-        { clicked: true },
+        {
+          clicked: true,
+          seletedIndex: index,
+        },
       ),
     );
   }
@@ -103,7 +108,7 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
   }
 
   render () {
-    const { clicked, cardData, loading } = this.state;
+    const { clicked, cardData, loading, selectedIndex } = this.state;
     return(
 			<div className="profile-wrapper--cards">
         {/* Loader */}
@@ -127,7 +132,9 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
         </div>
         {/* Modal */}
         <Modal open={clicked} >
-          <Modal.Header>Profile Picture</Modal.Header>
+          <Modal.Header>
+            {cardData[selectedIndex].title || `${cardData[selectedIndex].content.slice(0, 25)}..` || 'Sample title'}
+          </Modal.Header>
           <Modal.Content
             image={true}
             scrolling={true}
