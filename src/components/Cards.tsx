@@ -35,9 +35,11 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
   }
 
   handleClick (index: number, self: any, e: any) {
-    // const className = e.target.className || '';
-		// relevant to card clicks
-    this.props.openCard(index);
+    const className = e.target.className || '';
+    if (className.includes('content')) {
+			// relevant to card clicks
+      this.props.openCard(index);
+    }
   }
 
   upVoteHandler (index: number, self: any, e: any) {
@@ -111,7 +113,7 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
       responseType: 'json',
       data: { id: newState.data[index].id },
       headers: { 'X-Authorization-Token': this.props.token },
-    }).then(resp => console.log(resp)).catch(error => console.warn(error));
+    }).catch(error => console.warn(error));
   }
 
   render () {
