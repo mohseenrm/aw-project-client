@@ -116,13 +116,15 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
           token={this.props.token}
           openCard={this.openCard}
         />
-        <Button
-          color="blue"
-          fluid={true}
-          onClick={this.loadMoreCards}
-        >
-          Load more
-        </Button>
+        <div className="profile-wrapper--button">
+          <Button
+            color="blue"
+            fluid={true}
+            onClick={this.loadMoreCards}
+          >
+            Load more
+          </Button>
+        </div>
         {/* Modal */}
         <Modal open={clicked} >
           <Modal.Header>Profile Picture</Modal.Header>
