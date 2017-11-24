@@ -10,7 +10,8 @@ import { CardProps } from 'semantic-ui-react/dist/commonjs/views/Card/Card';
 
 interface CardsProps {
   data: [any];
-  token: string;
+	token: string;
+	openCard: Function;
 }
 
 interface CardsState {
@@ -34,13 +35,9 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
   }
 
   handleClick (index: number, self: any, e: any) {
-    const className = e.target.className || '';
+    // const className = e.target.className || '';
 		// relevant to card clicks
-    if (className.includes('content')) {
-      console.log('INDEX', index);
-      console.log('self: ', self);
-      console.log('e: ', e);
-    }
+		this.props.openCard(index);
   }
 
   upVoteHandler (index: number, self: any, e: any) {
@@ -151,7 +148,7 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 										{cardData.last_modified}
 									</Card.Meta>
 									<Card.Description>
-										{cardData.content}
+										{cardData.content.slice(0, 140)}...
 									</Card.Description>
 								</Card.Content>
 								<Card.Content extra={true}>
@@ -179,45 +176,51 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 			);
 		} else {
 			return(
-				<Card
-					fluid={true}
-					href="#"
-					raised={true}
+				<Card.Group
+					basic={true}
+					size="small"
+					itemsPerRow="three"
+					stackable={true}
 				>
-					<Card.Content>
-						<Card.Header>
-							Steve Sanders
-						</Card.Header>
-						<Card.Meta>
-							Friends of Elliot
-						</Card.Meta>
-						<Card.Description>
-							Steve wants to add you to the group <strong>best friends</strong>
-						</Card.Description>
-					</Card.Content>
-					<Card.Content extra={true}>
-						<div className="ui three buttons">
-							<Button
-								size="tiny"
-								color="blue"
-								icon="thumbs up"
-								label={{ basic: true, color: 'blue', pointing: 'left', content: '1' }}
-							/>
-							<Button
-								size="tiny"
-								color="orange"
-								icon="thumbs down"
-								label={{ basic: true, color: 'orange', pointing: 'left', content: '1' }}
-							/>
-							<Button
-								size="tiny"
-								color="red"
-								icon="heart"
-								label={{ basic: true, color: 'red', pointing: 'left', content: '1' }}
-							/>
-						</div>
-					</Card.Content>
-				</Card>
+					<Card
+						fluid={true}
+						href="#"
+						raised={true}
+					>
+						<Card.Content>
+							<Card.Header>
+								Card Title
+								<Rating
+									icon="heart"
+									defaultRating={1}
+									maxRating={1}
+								/>
+							</Card.Header>
+							<Card.Meta>
+								2017-11-23 03:42:24
+							</Card.Meta>
+							<Card.Description>
+								Lorem Ipsum
+							</Card.Description>
+						</Card.Content>
+						<Card.Content extra={true}>
+							<div className="ui three buttons">
+								<Button
+									size="tiny"
+									color="blue"
+									icon="thumbs up"
+									label={{ basic: true, color: 'blue', pointing: 'left', content: '2' }}
+								/>
+								<Button
+									size="tiny"
+									color="orange"
+									icon="thumbs down"
+									label={{ basic: true, color: 'orange', pointing: 'left', content: '1' }}
+								/>
+							</div>
+						</Card.Content>
+					</Card>
+				</Card.Group>
 			);
 		}
 	}

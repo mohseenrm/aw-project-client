@@ -19,6 +19,7 @@ interface ProfileProps {
 }
 
 interface ProfileState {
+  allCardData?: [any];
   cardData?: [any];
   clicked: boolean;
   loading: boolean;
@@ -35,6 +36,8 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
 
     this.handleClick = this.handleClick.bind(this);
     this.loadProfileData = this.loadProfileData.bind(this);
+    this.loadMoreCards = this.loadMoreCards.bind(this);
+    this.openCard = this.openCard.bind(this);
   }
 
   // onclick function of card
@@ -67,37 +70,66 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
         {},
         this.state,
         {
-          cardData: data,
+          allCardData: data,
+          cardData: data.slice(0, 5),
           loading: false,
         },
       ),
     );
   }
 
+  openCard (index: number) {
+    console.log(index);
+    this.setState(
+      Object.assign(
+        {},
+        this.state,
+        { clicked: true },
+      ),
+    );
+  }
+
+  loadMoreCards () {
+    const max = this.state.allCardData.length;
+    const current = this.state.cardData.length;
+    const newLimit = current + 5 <= max ? current + 5 : max;
+    this.setState(
+      Object.assign(
+        {},
+        this.state,
+        { cardData: this.state.allCardData.slice(0, newLimit) },
+      ),
+    );
+  }
+
   render () {
+    const { clicked, cardData, loading } = this.state;
     return(
 			<div className="profile-wrapper--cards">
         {/* Loader */}
-        <Dimmer active={this.state.loading}>
+        <Dimmer active={loading}>
           <Loader size="big">Hold tight! Fetching your cards...</Loader>
         </Dimmer>
         {/* Cards */}
         <Cards
-          data={this.state.cardData}
+          data={cardData}
           token={this.props.token}
+          openCard={this.openCard}
         />
+        <Button
+          color="blue"
+          fluid={true}
+          onClick={this.loadMoreCards}
+        >
+          Load more
+        </Button>
         {/* Modal */}
-        <Modal open={this.state.clicked} >
+        <Modal open={clicked} >
           <Modal.Header>Profile Picture</Modal.Header>
           <Modal.Content
             image={true}
             scrolling={true}
           >
-            <Image
-              size="medium"
-              src="/assets/images/wireframe/image.png"
-              wrapped={true}
-            />
             <Modal.Description>
               <Header>Modal Header</Header>
               <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
