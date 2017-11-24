@@ -95,6 +95,28 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 		/* tslint:enable */
   }
 
+  toggleFavorite (index: number, self: any, e: any, data: any) {
+    const favorite = data.rating === 1;
+    const newState = self.state;
+    newState.data[index].favorite = favorite;
+
+    self.setState(
+			Object.assign(
+				{},
+				self.state,
+				newState,
+			),
+		);
+
+    return axios({
+      method: 'post',
+      url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/favorite/',
+      responseType: 'json',
+      data: { id: newState.data[index].id },
+      headers: { 'X-Authorization-Token': this.props.token },
+    }).then(resp => console.log(resp)).catch(error => console.warn(error));
+  }
+
   render () {
 		/* tslint:disable */
 		const self = this;
@@ -117,8 +139,13 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 							>
 								<Card.Content>
 									<Card.Header>
-										{cardData.title}
-										<Rating icon="heart" defaultRating={0} maxRating={1} />
+										{cardData.title || `${cardData.content.slice(0, 23)}..`}
+										<Rating
+											icon="heart"
+											defaultRating={cardData.favorite ? 1 : 0}
+											maxRating={1}
+											onRate={this.toggleFavorite.bind(this, index, self)}
+										/>
 									</Card.Header>
 									<Card.Meta>
 										{cardData.last_modified}
