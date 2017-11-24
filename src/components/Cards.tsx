@@ -10,8 +10,8 @@ import { CardProps } from 'semantic-ui-react/dist/commonjs/views/Card/Card';
 
 interface CardsProps {
   data: [any];
-	token: string;
-	openCard: Function;
+  token: string;
+  openCard: Function;
 }
 
 interface CardsState {
@@ -37,7 +37,7 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
   handleClick (index: number, self: any, e: any) {
     // const className = e.target.className || '';
 		// relevant to card clicks
-		this.props.openCard(index);
+    this.props.openCard(index);
   }
 
   upVoteHandler (index: number, self: any, e: any) {
