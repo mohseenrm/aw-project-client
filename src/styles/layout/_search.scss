@@ -1,0 +1,14 @@
+.search-wrapper{
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+
+	background: $dark-black;
+	font-family: $content-font;
+
+	&--search{
+		margin-top: 8vh;
+		height: 20%;
+	}
+}
