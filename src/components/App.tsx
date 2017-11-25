@@ -4,6 +4,7 @@ import { Tab } from 'semantic-ui-react';
 import Profile from './Profile';
 import Login from './Login';
 import CreateUser from './CreateUser';
+import Explore from './Explore';
 
 interface AppProps {
   message: string;
@@ -82,10 +83,11 @@ export default class App extends React.Component < AppProps, AppState > {
       const panes = [
         {
           menuItem: {
-            content: 'Users',
-            icon: 'users',
+            content: 'Cards',
+            icon: 'user',
             inverted: true,
-            key: 'users',
+            key: 'user',
+            size: 'massive',
           },
           render: () => {
             return(
@@ -99,12 +101,24 @@ export default class App extends React.Component < AppProps, AppState > {
           },
         },
         {
-          menuItem: 'Tab 2',
+          menuItem: {
+            content: 'Feed',
+            icon: 'line chart',
+            inverted: true,
+            key: 'feed',
+            size: 'massive',
+          },
           render: () => <Tab.Pane>Tab 2 Content</Tab.Pane>,
         },
         {
-          menuItem: 'Tab 3',
-          render: () => <Tab.Pane>Tab 3 Content</Tab.Pane>,
+          menuItem: {
+            content: 'Explore',
+            icon: 'search',
+            inverted: true,
+            key: 'explore',
+            size: 'massive',
+          },
+          render: () => <Explore />,
         },
       ];
 
