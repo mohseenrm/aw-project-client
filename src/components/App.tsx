@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Tab } from 'semantic-ui-react';
 
-import Profile from './Profile';
-import Login from './Login';
-import CreateUser from './CreateUser';
-import Explore from './Explore';
 import Analytics from './Analytics';
+import CreateUser from './CreateUser';
+import Dashboard from './Dashboard';
+import Explore from './Explore';
+import Login from './Login';
+import Profile from './Profile';
 interface AppProps {
   message: string;
 }
@@ -129,6 +130,16 @@ export default class App extends React.Component < AppProps, AppState > {
             size: 'massive',
           },
           render: () => <Analytics />,
+        },
+        {
+          menuItem: {
+            content: 'Dashboard',
+            icon: 'search',
+            inverted: true,
+            key: 'dashboard',
+            size: 'massive',
+          },
+          render: () => <Dashboard />,
         },
       ];
 
