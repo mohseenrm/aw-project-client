@@ -119,7 +119,7 @@ export default class App extends React.Component < AppProps, AppState > {
             key: 'explore',
             size: 'massive',
           },
-          render: () => <Explore />,
+          render: () => <Explore token={this.state.token}/>,
         },
         {
           menuItem: {

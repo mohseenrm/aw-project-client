@@ -50,12 +50,10 @@ export default class Explore extends React.Component < ExploreProps, ExploreStat
   sendSearchRequest () {
     const { type, search } = this.state;
     let api;
-    if (type == 'tag') {
+    if (type === 'tag') {
       api = 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/tagsearch/?search=' + search;
     }
-    else {
-      api = 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/rawsearch/?search=' + search;
-    }
+    else { api = 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/rawsearch/?search=' + search;}
 
     return axios({
       method: 'get',
@@ -64,7 +62,7 @@ export default class Explore extends React.Component < ExploreProps, ExploreStat
       headers: {
         'X-Authorization-Token': this.props.token,
       },
-    }).then((response: any) => {console.log(response);})
+    }).then((response: any) => {console.log(response); })
     .catch((error: any) => console.log(error));
   }
 
