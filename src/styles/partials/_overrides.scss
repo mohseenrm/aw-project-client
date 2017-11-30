@@ -8,3 +8,12 @@
 .ui.labeled.button {
 	margin: 2%;
 }
+
+.ui.segment, .ui.segments .segment {
+	font-size: 1.1rem;
+	line-height: 3.5vh;
+}
+
+.search-wrapper--results > .ui.segment > .ui.header {
+	margin: 0;
+}

@@ -4,7 +4,10 @@ import axios from 'axios';
 import {
 	Button,
 	Select,
+	Header,
 	Input,
+	Segment,
+	Statistic,
 } from 'semantic-ui-react';
 
 interface ExploreProps {
@@ -14,6 +17,7 @@ interface ExploreProps {
 interface ExploreState {
   type: string;
   search: string;
+  searchData?: any;
 }
 
 const options = [
@@ -32,8 +36,6 @@ export default class Explore extends React.Component < ExploreProps, ExploreStat
 		this.selectTypeOfSearch = this.selectTypeOfSearch.bind(this);
 		this.sendSearchRequest = this.sendSearchRequest.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-
-
 		/* tslint:enable */
   }
 
@@ -62,7 +64,17 @@ export default class Explore extends React.Component < ExploreProps, ExploreStat
       headers: {
         'X-Authorization-Token': this.props.token,
       },
-    }).then((response: any) => {console.log(response); })
+    }).then((response: any) => {
+      const searchData = response.data.responseData.result || null;
+
+      return this.setState(
+				Object.assign(
+					{},
+					this.state,
+					{ searchData },
+				),
+			);
+    })
     .catch((error: any) => console.log(error));
   }
 
@@ -78,38 +90,90 @@ export default class Explore extends React.Component < ExploreProps, ExploreStat
   }
 
   render () {
-    return(
-			<div className="search-wrapper">
-				<div className="search-wrapper--search">
-					<Input
-						type="text"
-						placeholder="Search..."
-						action={true}
-						size="huge"
-						name="search"
-						onChange={this.handleChange}
-					>
-						<input />
-						<Select
-							compact={true}
-							options={options}
-							onChange={this.selectTypeOfSearch}
-							defaultValue="all"
+    if (this.state.searchData) {
+      return(
+				<div className="search-wrapper">
+					<div className="search-wrapper--search">
+						<Input
+							type="text"
+							placeholder="Search..."
+							action={true}
 							size="huge"
-						/>
-						<Button
-							color="blue"
-							primary={true}
-							type="submit"
-							size="huge"
-							onClick={this.sendSearchRequest}
-
+							name="search"
+							onChange={this.handleChange}
 						>
-							Search
-						</Button>
-					</Input>
+							<input />
+							<Select
+								compact={true}
+								options={options}
+								onChange={this.selectTypeOfSearch}
+								defaultValue="all"
+								size="huge"
+							/>
+							<Button
+								color="blue"
+								primary={true}
+								type="submit"
+								size="huge"
+								onClick={this.sendSearchRequest}
+							>
+								Search
+							</Button>
+						</Input>
+					</div>
+					<div className="search-wrapper--results">
+							{
+								this.state.searchData.map((data: any) =>
+									<Segment>
+										<Statistic floated="right">
+											<Statistic.Value>{parseFloat(data.score).toFixed(2)}</Statistic.Value>
+											<Statistic.Label>Score</Statistic.Label>
+										</Statistic>
+										<Header
+											as="h2"
+											content={data.title || `${data.content.slice(0, 20)}...`}
+										/>
+										{data.content}
+									</Segment>,
+								)
+							}
+					</div>
 				</div>
-			</div>
-    );
+      );
+    } else {
+      return(
+				<div className="search-wrapper">
+					<div className="search-wrapper--search">
+						<Input
+							type="text"
+							placeholder="Search..."
+							action={true}
+							size="huge"
+							name="search"
+							onChange={this.handleChange}
+						>
+							<input />
+							<Select
+								compact={true}
+								options={options}
+								onChange={this.selectTypeOfSearch}
+								defaultValue="all"
+								size="huge"
+							/>
+							<Button
+								color="blue"
+								primary={true}
+								type="submit"
+								size="huge"
+								onClick={this.sendSearchRequest}
+
+							>
+								Search
+							</Button>
+						</Input>
+					</div>
+				</div>
+      );
+    }
   }
 }

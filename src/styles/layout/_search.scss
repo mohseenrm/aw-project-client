@@ -1,8 +1,13 @@
 .search-wrapper{
 	width: 100%;
 	min-height: 100vh;
+
+	// color: #fff;
+
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	// justify-content: center;
+	align-items: center;
 
 	background: $dark-black;
 	font-family: $content-font;
@@ -10,5 +15,9 @@
 	&--search{
 		margin-top: 8vh;
 		height: 20%;
+	}
+
+	&--results{
+		padding: 5% 5% 0 5%;
 	}
 }
