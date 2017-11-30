@@ -23,7 +23,7 @@ export default class Analytics extends React.Component < AnalyticsProps, Analyti
   render () {
     return(
 			<div className="analytics-wrapper">
-				
+				Hola
 			</div>
     );
   }
