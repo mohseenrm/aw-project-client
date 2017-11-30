@@ -5,7 +5,7 @@ import Profile from './Profile';
 import Login from './Login';
 import CreateUser from './CreateUser';
 import Explore from './Explore';
-
+import Analytics from './Analytics';
 interface AppProps {
   message: string;
 }
@@ -119,6 +119,16 @@ export default class App extends React.Component < AppProps, AppState > {
             size: 'massive',
           },
           render: () => <Explore />,
+        },
+        {
+          menuItem: {
+            content: 'Analytics',
+            icon: 'search',
+            inverted: true,
+            key: 'analytics',
+            size: 'massive',
+          },
+          render: () => <Analytics />,
         },
       ];
 
