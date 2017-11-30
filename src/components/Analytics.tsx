@@ -61,7 +61,7 @@ export default class Analytics extends React.Component < AnalyticsProps, Analyti
 						[ 'Week 8', 16, 24 ],
           ]}
           options={{
-            title: 'Something',
+            title: 'Activity',
             is3D: false,
           }}
           graph_id="AreaChart"

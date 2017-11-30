@@ -162,7 +162,7 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
           <Dimmer active={loading}>
             <Loader size="big">Hold tight! Fetching your cards...</Loader>
           </Dimmer>
-          {/* Cards */}
+          {/* Personal Cards */}
           <Cards
             data={cardData}
             token={this.props.token}
