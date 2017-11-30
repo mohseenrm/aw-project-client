@@ -25,7 +25,7 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
   }
 
   componentWillReceiveProps (props: CardProps) {
-		console.log('called??');
+    console.log('called??');
     this.setState(
 			Object.assign(
 				{},
