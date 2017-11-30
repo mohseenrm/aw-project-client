@@ -1,4 +1,6 @@
 import * as React from 'react';
+import axios from 'axios';
+
 import {
 	Button,
 	Select,
@@ -6,10 +8,12 @@ import {
 } from 'semantic-ui-react';
 
 interface ExploreProps {
+  token: string;
 }
 
 interface ExploreState {
   type: string;
+  search: string;
 }
 
 const options = [
@@ -23,8 +27,13 @@ export default class Explore extends React.Component < ExploreProps, ExploreStat
 		super(props);
 		this.state = {
 			type: 'all',
+			search: ''
 		};
 		this.selectTypeOfSearch = this.selectTypeOfSearch.bind(this);
+		this.sendSearchRequest = this.sendSearchRequest.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+
+
 		/* tslint:enable */
   }
 
@@ -38,6 +47,38 @@ export default class Explore extends React.Component < ExploreProps, ExploreStat
 		);
   }
 
+  sendSearchRequest () {
+    const { type, search } = this.state;
+    let api;
+    if (type == 'tag') {
+      api = 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/tagsearch/?search=' + search;
+    }
+    else {
+      api = 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/rawsearch/?search=' + search;
+    }
+
+    return axios({
+      method: 'get',
+      url: api,
+      responseType: 'json',
+      headers: {
+        'X-Authorization-Token': this.props.token,
+      },
+    }).then((response: any) => {console.log(response);})
+    .catch((error: any) => console.log(error));
+  }
+
+  handleChange (e: any, state: any) {
+    const { name, value } = e.target;
+    this.setState(
+			Object.assign(
+				{},
+				this.state,
+				{ [name]: value },
+			),
+		);
+  }
+
   render () {
     return(
 			<div className="search-wrapper">
@@ -47,6 +88,8 @@ export default class Explore extends React.Component < ExploreProps, ExploreStat
 						placeholder="Search..."
 						action={true}
 						size="huge"
+						name="search"
+						onChange={this.handleChange}
 					>
 						<input />
 						<Select
@@ -61,6 +104,8 @@ export default class Explore extends React.Component < ExploreProps, ExploreStat
 							primary={true}
 							type="submit"
 							size="huge"
+							onClick={this.sendSearchRequest}
+
 						>
 							Search
 						</Button>
