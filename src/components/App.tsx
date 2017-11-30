@@ -85,7 +85,7 @@ export default class App extends React.Component < AppProps, AppState > {
         {
           menuItem: {
             content: 'Cards',
-            icon: 'user',
+            icon: 'sticky note',
             inverted: true,
             key: 'user',
             size: 'massive',
@@ -124,7 +124,7 @@ export default class App extends React.Component < AppProps, AppState > {
         {
           menuItem: {
             content: 'Analytics',
-            icon: 'search',
+            icon: 'cubes',
             inverted: true,
             key: 'analytics',
             size: 'massive',
@@ -134,7 +134,7 @@ export default class App extends React.Component < AppProps, AppState > {
         {
           menuItem: {
             content: 'Dashboard',
-            icon: 'search',
+            icon: 'user',
             inverted: true,
             key: 'dashboard',
             size: 'massive',

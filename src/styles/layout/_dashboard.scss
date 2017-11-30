@@ -1,9 +1,19 @@
 .dashboard-wrapper{
 	width: 100%;
 	min-height: 100vh;
+
 	display: flex;
+	flex-direction: column;
 
 	background: $dark-black;
-	font-family: $content-font;
-	color: $off-white;
+	font-family: $title-font;
+	color: $dark-black;
+
+	padding: 2% 10% 0 10%;
+
+	&--tags{
+		display: flex;
+		width: 100%;
+		flex-wrap: nowrap;
+	}
 }

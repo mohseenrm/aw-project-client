@@ -24,6 +24,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-google-charts": "^1.5.5",
+    "react-tag-input": "^4.7.2",
     "riek": "^1.1.0",
     "semantic-ui-react": "^0.76.0"
   },

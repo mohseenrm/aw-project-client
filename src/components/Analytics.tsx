@@ -6,20 +6,6 @@ import {
 } from 'semantic-ui-react';
 import { Chart } from 'react-google-charts';
 
-const data = [
-	{ name:'HTML', count:235 },
-	{ name:'JavaScript', count:75 },
-	{ name:'C++', count:14 },
-	{ name:'C', count:23 },
-	{ name:'SQL', count:39 },
-	{ name:'CSS', count:53 },
-	{ name:'JSON', count:40 },
-	{ name:'Markdown', count:30 },
-	{ name:'Scala', count:7 },
-	{ name:'Ruby', count:6 },
-	{ name:'Rust', count:9 },
-];
-
 interface AnalyticsProps {
 }
 
@@ -57,6 +43,28 @@ export default class Analytics extends React.Component < AnalyticsProps, Analyti
             is3D: false,
           }}
           graph_id="ScatterChart"
+          width="100%"
+          height="400px"
+          legend_toggle={true}
+				/>
+				<Chart
+          chartType="AreaChart"
+          data={[
+						[ 'Week', 'User', 'Others' ],
+						[ 'Week 1', 17, 17 ],
+						[ 'Week 2', 12, 64 ],
+						[ 'Week 3', 1, 6 ],
+						[ 'Week 4', 7, 34 ],
+						[ 'Week 5', 18, 4 ],
+						[ 'Week 6', 13, 25 ],
+						[ 'Week 7', 7, 10 ],
+						[ 'Week 8', 16, 24 ],
+          ]}
+          options={{
+            title: 'Something',
+            is3D: false,
+          }}
+          graph_id="AreaChart"
           width="100%"
           height="400px"
           legend_toggle={true}
