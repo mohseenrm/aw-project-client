@@ -5,6 +5,7 @@ import Analytics from './Analytics';
 import CreateUser from './CreateUser';
 import Dashboard from './Dashboard';
 import Explore from './Explore';
+import Feed from './Feed';
 import Login from './Login';
 import Profile from './Profile';
 interface AppProps {
@@ -73,14 +74,15 @@ export default class App extends React.Component < AppProps, AppState > {
   }
 
   render () {
-    if (this.state.create) {
+    const { auth, create, token, username } = this.state;
+    if (create) {
       return(
         <CreateUser
           callbackParent={this.shouldCreateUser}
           getCreateUserData={this.getCreateUserData}
         />
       );
-    } else if (this.state.auth) {
+    } else if (auth) {
       const panes = [
         {
           menuItem: {
@@ -94,8 +96,8 @@ export default class App extends React.Component < AppProps, AppState > {
             return(
               <div className="profile-wrapper">
                 <Profile
-                  token={this.state.token}
-                  username={this.state.username}
+                  token={token}
+                  username={username}
                 />
               </div>
             );
@@ -109,7 +111,7 @@ export default class App extends React.Component < AppProps, AppState > {
             key: 'feed',
             size: 'massive',
           },
-          render: () => <Tab.Pane>Tab 2 Content</Tab.Pane>,
+          render: () => <Feed token={token} />,
         },
         {
           menuItem: {
@@ -153,8 +155,8 @@ export default class App extends React.Component < AppProps, AppState > {
         <div className="main-wrapper">
           <Login
             callbackParent={this.shouldCreateUser}
-            token={this.state.token}
-            username={this.state.username}
+            token={token}
+            username={username}
             getLoginUserData={this.getLoginUserData}
           />
         </div>

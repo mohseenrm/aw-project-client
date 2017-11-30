@@ -79,7 +79,7 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
         this.state,
         {
           allCardData: data,
-          cardData: data.slice(0, 5),
+          cardData: data.slice(0, 6),
           loading: false,
         },
       ),
@@ -103,7 +103,7 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
   loadMoreCards () {
     const max = this.state.allCardData.length;
     const current = this.state.cardData.length;
-    const newLimit = current + 5 <= max ? current + 5 : max;
+    const newLimit = current + 6 <= max ? current + 6 : max;
     this.setState(
       Object.assign(
         {},
