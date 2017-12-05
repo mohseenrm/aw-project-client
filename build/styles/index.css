@@ -1,0 +1,204 @@
+/* variables */
+/* colors */
+/* classes */
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 300; }
+
+.content {
+  font-family: "Merriweather", serif;
+  font-size: 1.5rem;
+  font-weight: 100; }
+
+.m-r-2w {
+  margin-right: 2vw; }
+
+/* Eric Meyer's CSS Reset
+   http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+   This is a Sass partial
+   */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body {
+  /* base content styling */
+  font-family: "Merriweather", serif;
+  font-size: 1.1rem; }
+
+/* ::selection{
+	background: $highlight-orange;
+	color: $off-white;
+}
+::-webkit-selection{
+	background: $highlight-orange;
+	color: $off-white;
+}
+::-moz-selection {
+  background: $highlight-orange;
+	color: $off-white;
+}
+::-webkit-input-placeholder {
+	color: $mid-grey;
+}
+::-moz-placeholder {
+	color: $mid-grey;
+}
+:-ms-input-placeholder {
+	color: $mid-grey;
+}
+:-moz-placeholder {
+	color: $mid-grey;
+} */
+/* input{
+	-webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+} */
+.m-1 {
+  margin: 1%; }
+
+.analytics-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background: #fff;
+  font-family: "Merriweather", serif;
+  color: #15120B; }
+
+.dashboard-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #15120B;
+  font-family: "Montserrat", sans-serif;
+  color: #15120B;
+  padding: 2% 10% 0 10%; }
+  .dashboard-wrapper--tags {
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap; }
+
+.feed-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  padding: 2.2% 0 0 2.2%;
+  background: #fff;
+  font-family: "Merriweather", serif; }
+
+.main-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background: #032030;
+  font-family: "Merriweather", serif; }
+  .main-wrapper--create-user {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100vh;
+    padding: 3vw;
+    background: #f5f5f5; }
+    .main-wrapper--create-user--buttons {
+      display: flex;
+      margin-top: 2vh; }
+  .main-wrapper--login {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    .main-wrapper--login--buttons {
+      margin-top: 2vh; }
+
+.profile-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background: #15120B;
+  font-family: "Merriweather", serif; }
+  .profile-wrapper--cards {
+    padding: 2vw 2vw 0 2vw;
+    width: 100%; }
+  .profile-wrapper--button {
+    display: flex;
+    flex-direction: row;
+    margin-top: 4vh;
+    margin-bottom: 4vh; }
+
+.search-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #15120B;
+  font-family: "Merriweather", serif; }
+  .search-wrapper--search {
+    margin-top: 8vh;
+    height: 20%; }
+  .search-wrapper--results {
+    padding: 5% 5% 0 5%; }
+
+.ui.card > .content > .header, .ui.cards > .card > .content > .header {
+  display: flex;
+  justify-content: space-between;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  color: rgba(0, 0, 0, 0.85); }
+
+.ui.labeled.button {
+  margin: 2%; }
+
+.ui.segment, .ui.segments .segment {
+  font-size: 1.1rem;
+  line-height: 3.5vh; }
+
+.search-wrapper--results > .ui.segment > .ui.header {
+  margin: 0; }
+
+/*# sourceMappingURL=index.css.map */
