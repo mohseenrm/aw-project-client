@@ -12,6 +12,9 @@
 	}
 
 	&--button{
+		display: flex;
+		flex-direction: row;
+
 		margin-top: 4vh;
 		margin-bottom: 4vh;
 	}

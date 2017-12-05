@@ -41,6 +41,8 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
       selectedIndex: 0,
     };
 
+    this.addNewCard = this.addNewCard.bind(this);
+    this.createCard = this.createCard.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.loadMoreCards = this.loadMoreCards.bind(this);
     this.loadProfileData = this.loadProfileData.bind(this);
@@ -48,7 +50,26 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
     this.openCard = this.openCard.bind(this);
   }
 
-  // onclick function of card
+  addNewCard () {
+    const newCard = this.createCard();
+    /* tslint:disable */
+    let newState = this.state;
+    /* tslint:enable */
+    newState.allCardData.unshift(newCard);
+    newState.cardData.unshift(newCard);
+
+    this.setState(
+      Object.assign(
+        {},
+        this.state,
+        {
+          allCardData: newState.allCardData,
+          cardData: newState.cardData,
+        },
+      ),
+    );
+  }
+
   handleClick () {
     /* this pattern is used to copy keys from previous state and update new ones */
     this.setState(
@@ -87,7 +108,6 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
   }
 
   openCard (index: number) {
-    console.log(index);
     this.setState(
       Object.assign(
         {},
@@ -141,20 +161,36 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
       ),
     );
 
-    return axios({
-      method: 'post',
-      url: 'http://ec2-34-214-219-216.us-west-2.compute.amazonaws.com/cardservice/updatecard/',
-      responseType: 'json',
-      headers: {
-        'X-Authorization-Token': this.props.token,
-      },
-      data: newCard,
-    }).then(response => console.log(response))
-    .catch(error => console.warn(error));
+    if (newCard.id) {
+      return axios({
+        method: 'post',
+        url: 'http://ec2-34-214-219-216.us-west-2.compute.amazonaws.com/cardservice/updatecard/',
+        responseType: 'json',
+        headers: {
+          'X-Authorization-Token': this.props.token,
+        },
+        data: newCard,
+      }).then(response => console.log(response))
+      .catch(error => console.warn(error));
+    }
+  }
+
+  createCard () {
+    return {
+      content: 'Click here to add content',
+      downvotes: '0',
+      favorite: false,
+      in_group: false,
+      private: false,
+      title: 'Edit Title',
+      type: '0',
+      upvotes: '0',
+    };
   }
 
   render () {
     const { clicked, cardData, loading, selectedIndex } = this.state;
+
     if (cardData) {
       return(
         <div className="profile-wrapper--cards">
@@ -175,6 +211,13 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
               onClick={this.loadMoreCards}
             >
               Load more
+            </Button>
+            <Button
+              color="orange"
+              fluid={true}
+              onClick={this.addNewCard}
+            >
+              Create Card
             </Button>
           </div>
           {/* Modal */}
