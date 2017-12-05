@@ -26,7 +26,7 @@ export default class Feed extends React.Component < FeedProps, FeedState > {
     const { token } = this.props;
     return axios({
       method: 'get',
-      url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/feed/',
+      url: 'http://ec2-34-214-219-216.us-west-2.compute.amazonaws.com/cardservice/feed/',
       responseType: 'json',
       headers: {
         'X-Authorization-Token': token,

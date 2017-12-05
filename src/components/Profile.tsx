@@ -63,7 +63,7 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
   componentDidMount () {
     return axios({
       method: 'get',
-      url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/getallcards/',
+      url: 'http://ec2-34-214-219-216.us-west-2.compute.amazonaws.com/cardservice/getallcards/',
       responseType: 'json',
       headers: {
         'X-Authorization-Token': this.props.token,
@@ -143,7 +143,7 @@ export default class Profile extends React.Component < ProfileProps, ProfileStat
 
     return axios({
       method: 'post',
-      url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/updatecard/',
+      url: 'http://ec2-34-214-219-216.us-west-2.compute.amazonaws.com/cardservice/updatecard/',
       responseType: 'json',
       headers: {
         'X-Authorization-Token': this.props.token,

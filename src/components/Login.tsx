@@ -43,7 +43,7 @@ export default class Login extends React.Component < LoginProps, LoginState > {
 
     return axios({
       method: 'post',
-      url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/userservice/uservalidation/',
+      url: 'http://ec2-34-214-219-216.us-west-2.compute.amazonaws.com/userservice/uservalidation/',
       responseType: 'json',
       data: {
         email,

@@ -53,9 +53,9 @@ export default class Explore extends React.Component < ExploreProps, ExploreStat
     const { type, search } = this.state;
     let api;
     if (type === 'tag') {
-      api = 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/tagsearch/?search=' + search;
+      api = 'http://ec2-34-214-219-216.us-west-2.compute.amazonaws.com/cardservice/tagsearch/?search=' + search;
     }
-    else { api = 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/rawsearch/?search=' + search; }
+    else { api = 'http://ec2-34-214-219-216.us-west-2.compute.amazonaws.com/cardservice/rawsearch/?search=' + search; }
 
     return axios({
       method: 'get',

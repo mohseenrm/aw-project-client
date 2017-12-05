@@ -61,7 +61,7 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 
 			return axios({
 				method: 'post',
-				url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/upvote/',
+				url: 'http://ec2-34-214-219-216.us-west-2.compute.amazonaws.com/cardservice/upvote/',
 				responseType: 'json',
 				data: { id: newState.data[index].id },
 				headers: { 'X-Authorization-Token': this.props.token },
@@ -86,7 +86,7 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 
 			return axios({
 				method: 'post',
-				url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/downvote/',
+				url: 'http://ec2-34-214-219-216.us-west-2.compute.amazonaws.com/cardservice/downvote/',
 				responseType: 'json',
 				data: { id: newState.data[index].id },
 				headers: { 'X-Authorization-Token': this.props.token },
@@ -110,7 +110,7 @@ export default class Cards extends React.Component < CardsProps, CardsState > {
 
     return axios({
       method: 'post',
-      url: 'http://ec2-18-221-144-47.us-east-2.compute.amazonaws.com/cardservice/favorite/',
+      url: 'http://ec2-34-214-219-216.us-west-2.compute.amazonaws.com/cardservice/favorite/',
       responseType: 'json',
       data: { id: newState.data[index].id },
       headers: { 'X-Authorization-Token': this.props.token },
